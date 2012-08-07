@@ -13,7 +13,11 @@ var sorta = module.exports = function (opts, cb) {
 function Sorta (opts, createElement) {
     Stream.call(this);
     if (!opts) opts = {};
-    this.compare = opts.compare || function (a, b) { return b - a };
+    this.compare = opts.compare || function (a, b) {
+        if (a < b) return 1;
+        if (a > b) return -1;
+        return 0;
+    };
     
     this.writable = true;
     this.element = document.createElement('div');

@@ -126,9 +126,18 @@ and `'value'` properties.
 The `createElement(row)` function is called every time a new key shows up.
 `createElement(row)` should return a new html dom element for the `row` object.
 
-By default html elements are listed in descending order with a sorting function
-of `function (a, b) { return b - a }`. You use a custom comparison function by
-setting `opts.compare`.
+By default html elements are listed in descending order with this sorting
+function:
+
+``` js
+function (a, b) {
+    if (a < b) return 1;
+    if (a > b) return -1;
+    return 0;
+}
+```
+
+You use a custom comparison function by setting `opts.compare`.
 
 ## s.write(row)
 
