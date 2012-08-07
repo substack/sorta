@@ -118,13 +118,17 @@ s.appendTo(document.body);
 var sorta = require('sorta')
 ```
 
-## var s = sorta(createElement)
+## var s = sorta(opts={}, createElement)
 
 Return a new writable stream. Incoming writes must be row objects with `'key'`
 and `'value'` properties.
 
 The `createElement(row)` function is called every time a new key shows up.
 `createElement(row)` should return a new html dom element for the `row` object.
+
+By default html elements are listed in descending order with a sorting function
+of `function (a, b) { return b - a }`. You use a custom comparison function by
+setting `opts.compare`.
 
 ## s.write(row)
 

@@ -1,6 +1,6 @@
 {
     "name" : "sorta",
-    "version" : "0.0.1",
+    "version" : "0.0.2",
     "description" : "preserve the ordering of html elements in the browser as updates stream in",
     "main" : "index.js",
     "directories" : {

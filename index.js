@@ -13,12 +13,13 @@ var sorta = module.exports = function (opts, cb) {
 function Sorta (opts, createElement) {
     Stream.call(this);
     if (!opts) opts = {};
+    this.compare = opts.compare || function (a, b) { return b - a };
     
     this.writable = true;
     this.element = document.createElement('div');
     
     this.rows = {};
-    this._createElement = createElement;
+    this._createElement = opts.createElement || createElement;
 }
 
 Sorta.prototype = new Stream;
@@ -68,7 +69,7 @@ Sorta.prototype.write = function (row) {
     var nodes = self.element.childNodes;
     for (var i = 0; i < nodes.length; i++) {
         var key = nodes[i].dataset.key;
-        if (row.value > rows[key].value) {
+        if (self.compare(rows[key].value, row.value) > 0) {
             self.element.insertBefore(r.element, nodes[i]);
             break;
         }
