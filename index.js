@@ -49,6 +49,21 @@ Sorta.prototype.write = function (row) {
     else {
         self.element.removeChild(r.element);
     }
+    if (row.value === undefined) {
+        if (r) {
+            self.emit('remove', rows[row.key]);
+            
+            var nodes = self.element.childNodes;
+            for (var i = r.index; i < nodes.length; i++) {
+                var key = nodes[i].dataset.key;
+                rows[key].index = i;
+                
+                rows[key].emit('update');
+                self.emit('update', rows[key]);
+            }
+        }
+        return;
+    }
     
     var nodes = self.element.childNodes;
     for (var i = 0; i < nodes.length; i++) {

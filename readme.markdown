@@ -126,6 +126,12 @@ and `'value'` properties.
 The `createElement(row)` function is called every time a new key shows up.
 `createElement(row)` should return a new html dom element for the `row` object.
 
+## s.write(row)
+
+Create or update the row at `row.key` with the new value from `row.value`.
+
+If `row.value === undefined`, the element named by `row.key` will be removed.
+
 ## s.appendTo(target)
 
 Append the `s.element` html element to the `target` element.
