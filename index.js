@@ -57,6 +57,7 @@ Sorta.prototype.write = function (row) {
     if (row.value === undefined) {
         if (r) {
             self.emit('remove', rows[row.key]);
+            rows[row.key] = undefined;
             
             var nodes = self.element.childNodes;
             for (var i = r.index; i < nodes.length; i++) {
