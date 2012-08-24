@@ -160,6 +160,18 @@ Set a new value for the row object explicitly. This is the same as
 
 Triggered when a row gets updated or created.
 
+## s.on('remove', function (row) { ... })
+
+Fires when a row gets removed.
+
+## row.on('update', function () { ... })
+
+Fired when a row gets updated.
+
+## row.on('remove', function () { ... })
+
+Fired when a row gets removed.
+
 # attributes
 
 ## sorta.element
