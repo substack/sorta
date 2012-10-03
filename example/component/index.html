@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="../../build/build.js"></script>
+    <script>
+      var sorta = require('sorta');
+      var $ = require('component-jquery');
+
+      var s = sorta(function(row) {
+        return $('<p>')
+          .html(row.key)
+          .click(function() { console.log(row.key, 'clicked') })
+          [0]
+        ;
+      });
+
+      $(function() {
+        s.appendTo(document.body);
+      });
+
+      s.write({ key: 'foo', value: 0 });
+      s.write({ key: 'bar', value: 1 })
+    </script>
+  </head>
+  <body>
+    
+  </body>
+</html>

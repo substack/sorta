@@ -1,0 +1,17 @@
+{
+  "name": "sorta",
+  "repo": "juliangruber/sorta",
+  "description": "preserve the ordering of html elements in the browser as updates stream in",
+  "version": "0.0.1",
+  "keywords": [],
+  "dependencies": {
+    "juliangruber/stream": "*",
+    "juliangruber/events": "*"
+  },
+  "development": {
+    "component/jquery": "*"
+  },
+  "scripts": [
+    "index.js"
+  ]
+}
