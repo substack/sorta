@@ -29,7 +29,10 @@ function Sorta (opts, createElement) {
 Sorta.prototype = new Stream;
 
 Sorta.prototype.appendTo = function (target) {
-    target.appendChild(this.element);
+    while(this.element.childNodes.length) {
+        target.appendChild(this.element.childNodes[0]);
+    }
+    this.element = target;
 };
 
 Sorta.prototype.write = function (row) {
