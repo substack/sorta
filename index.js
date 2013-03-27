@@ -1,6 +1,5 @@
 var Stream = require('stream');
 var EventEmitter = require('events').EventEmitter;
-
 var sorta = module.exports = function (opts, cb) {
     if (typeof opts === 'object') {
         return new Sorta(opts, cb);
@@ -46,7 +45,7 @@ Sorta.prototype.write = function (row) {
         r.key = row.key;
         r.value = row.value;
         r.element = self._createElement(r);
-        r.element.dataset.key = row.key;
+        r.element.setAttribute('data-key', row.key);
         r.update = function (v) {
             self.write({ key : r.key, value : v });
         };
@@ -62,7 +61,7 @@ Sorta.prototype.write = function (row) {
             
             var nodes = self.element.childNodes;
             for (var i = r.index; i < nodes.length; i++) {
-                var key = nodes[i].dataset.key;
+                var key = nodes[i].getAttribute('data-key');
                 rows[key].index = i;
                 
                 rows[key].emit('update');
@@ -74,7 +73,7 @@ Sorta.prototype.write = function (row) {
     
     var nodes = self.element.childNodes;
     for (var i = 0; i < nodes.length; i++) {
-        var key = nodes[i].dataset.key;
+        var key = nodes[i].getAttribute('data-key');
         if (self.compare(rows[key].value, row.value) > 0) {
             self.element.insertBefore(r.element, nodes[i]);
             break;
@@ -87,7 +86,7 @@ Sorta.prototype.write = function (row) {
     
     nodes = self.element.childNodes;
     for (var j = 0; j < nodes.length; j++) {
-        var key = nodes[j].dataset.key;
+        var key = nodes[j].getAttribute('data-key');
         if (rows[key].index !== j || key === row.key) {
             rows[key].index = j;
             rows[key].emit('update');
