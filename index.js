@@ -29,6 +29,7 @@ Sorta.prototype = new Stream;
 
 Sorta.prototype.appendTo = function (target) {
     target.appendChild(this.element);
+    return this;
 };
 
 Sorta.prototype.write = function (row) {
